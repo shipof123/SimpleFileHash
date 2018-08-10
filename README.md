@@ -1,3 +1,3 @@
 ## Simple (Poorly written) Hash Function  
-Setup `make`
+Setup `make`  
 Usage `bin/SFH [filename]`
