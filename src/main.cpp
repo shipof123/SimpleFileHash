@@ -9,14 +9,14 @@ void hash(std::string& hashed){
 		ch ^= (ch >> 7);
 	}
 	for(int ch : hashed){
-		hashed[ch] ^= (hashed[ch+1] ^ >> hashed[ch]);
+		hashed[ch] ^= (hashed[ch+1] >> hashed[ch]);
 	}
 }
 
 int main(int argc, char * argv[]){ 
-	auto file = ifstream(argv[1]).rdbuff();
+	auto file = std::ifstream(argv[1]).rdbuff();
 	std::cout << file << std::endl;
-	ostringstream o;
+	std::ostringstream o;
 	o << file;
 	std::string hashed = o.str();
 	hash(hashed);
