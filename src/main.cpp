@@ -6,23 +6,21 @@
 
 void hash(std::string& hashed){
 	for(auto ch : hashed){
-		ch ^= (ch >> 7);
+		ch ^= hashed[0];
 	}
 	for(int ch : hashed){
-		hashed[ch] ^= (hashed[ch+1] >> hashed[ch]);
+		hashed[ch] ^= 123;
 	}
 }
-
-int main(int argc, char * argv[]){ 
-	auto file = std::ifstream(argv[1]).rdbuff();
-	std::cout << file << std::endl;
-	std::ostringstream o;
-	o << file;
-	std::string hashed = o.str();
+int main(int argc, char * argv[]){
+    std::fstream t(argv[1]);
+	std::string hashed((std::istreambuf_iterator<char>(t)),
+                 std::istreambuf_iterator<char>());
 	hash(hashed);
-	unsigned long long int ret(0); 
+	unsigned long long int ret(2310); 
 	for(auto ch: hashed){
-		ret ^= ch;
+		ret ^= (ch * 233);
 	}
-	return(ret << 4);
+	std::cout << argv[1] << ":" <<std::hex << (ret << 4) << std::endl;
+	return(0);
 }
